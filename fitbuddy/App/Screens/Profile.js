@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Switch,
-  Image
+  Image,
 } from "react-native";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import Colors from "../Shared/Colors";
@@ -15,6 +15,8 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [focusedEmail, setFocusedEmail] = useState(false);
+  const [focusedPassword, setFocusedPassword] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -27,20 +29,32 @@ const LoginScreen = () => {
       <Text style={styles.welcomeBack}>Faça seu login</Text>
       <Text style={styles.signInText}>Motive-se, mova-se e se surpreenda</Text>
       <TextInput
-        style={styles.input}
+        style={[
+          styles.input,
+          { borderColor: focusedEmail ? Colors.PRIMARY : Colors.DARK_GRAY },
+        ]}
         placeholderTextColor={"white"}
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
+        onFocus={() => setFocusedEmail(true)}
+        onBlur={() => setFocusedEmail(false)}
+        selectionColor={Colors.PRIMARY} // Cor do cursor quando focado
       />
       <TextInput
-        style={styles.input}
+        style={[
+          styles.input,
+          { borderColor: focusedPassword ? Colors.PRIMARY : Colors.DARK_GRAY },
+        ]}
         placeholder="Password"
         placeholderTextColor={"white"}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        onFocus={() => setFocusedPassword(true)}
+        onBlur={() => setFocusedPassword(false)}
+        selectionColor={Colors.PRIMARY} // Cor do cursor quando focado
       />
 
       <View style={{ flexDirection: "row", gap: 10 }}>
@@ -115,7 +129,6 @@ const styles = StyleSheet.create({
     width: "80%",
     padding: 15,
     borderWidth: 1,
-    borderColor: Colors.DARK_GRAY,
     borderRadius: 5,
     color: "white",
     marginBottom: 10,
