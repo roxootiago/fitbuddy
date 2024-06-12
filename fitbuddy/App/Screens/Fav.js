@@ -29,9 +29,11 @@ const PaymentScreen = () => {
           • Encontrar locais próximos para treinar
         </Text>
         <Text style={styles.featureText}>• Treinos personalizados</Text>
+        <Text style={styles.featureText}>• Comunidade engajada</Text>
         <Text style={styles.featureText}>
-          • Acesso à relatórios de progresos
+          • Acesso à relatórios de progresso
         </Text>
+        <Text style={styles.featureText}>• Compartilhar progresso com seus amigos</Text>
       </View>
       <TouchableOpacity style={styles.nextButton}>
         <Text style={styles.nextButtonText}>Quero me cadastrar</Text>
