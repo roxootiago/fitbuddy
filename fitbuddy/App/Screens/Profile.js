@@ -7,9 +7,12 @@ import {
   StyleSheet,
   Switch,
   Image,
+  Alert,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import Colors from "../Shared/Colors";
+import axios from "axios";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -17,6 +20,38 @@ const LoginScreen = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [focusedEmail, setFocusedEmail] = useState(false);
   const [focusedPassword, setFocusedPassword] = useState(false);
+
+  const navigator = useNavigation();
+
+  const navigateToSignUp = () => {
+    navigator.navigate("signup-screen");
+  };
+
+const handleSignIn = async () => {
+  try {
+    const response = await axios.get(
+      `https://api-fitbuddy.onrender.com/users/?email=${email}&password=${password}`
+    );
+
+    if (response.data && response.data.length > 0) {
+      const { email } = response.data[0]; // Supondo que estamos pegando o primeiro usuário encontrado
+      navigator.replace("user-screen", { email });
+    } else {
+      Alert.alert(
+        "Erro",
+        "Usuário não encontrado. Verifique suas credenciais."
+      );
+    }
+  } catch (error) {
+    console.error("Erro ao verificar usuário:", error);
+    Alert.alert(
+      "Erro",
+      "Falha ao verificar usuário. Por favor, tente novamente."
+    );
+  }
+};
+
+
 
   return (
     <View style={styles.container}>
@@ -31,7 +66,9 @@ const LoginScreen = () => {
       <TextInput
         style={[
           styles.input,
-          { borderColor: focusedEmail ? Colors.PRIMARY : Colors.DARK_GRAY },
+          {
+            borderColor: focusedEmail ? Colors.PRIMARY : Colors.DARK_GRAY,
+          },
         ]}
         placeholderTextColor={"white"}
         placeholder="Email"
@@ -45,7 +82,9 @@ const LoginScreen = () => {
       <TextInput
         style={[
           styles.input,
-          { borderColor: focusedPassword ? Colors.PRIMARY : Colors.DARK_GRAY },
+          {
+            borderColor: focusedPassword ? Colors.PRIMARY : Colors.DARK_GRAY,
+          },
         ]}
         placeholder="Password"
         placeholderTextColor={"white"}
@@ -78,10 +117,10 @@ const LoginScreen = () => {
       <TouchableOpacity>
         <Text style={styles.forgotPassword}>Esqueci a senha</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.signInButton}>
+      <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
         <Text style={styles.signInButtonText}>Sign In</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={navigateToSignUp}>
         <Text style={styles.createAccount}>Criar conta</Text>
       </TouchableOpacity>
     </View>

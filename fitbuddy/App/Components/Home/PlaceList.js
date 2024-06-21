@@ -28,7 +28,7 @@ const cards = [
     title: "Aeróbico",
     image:
       "https://drbrunocosme.com.br/wp-content/uploads/2020/09/two-athletes-runs-on-treadmill-training-in-gym-Q6EBHEG.jpg",
-    rating: 4.8,
+    rating: 4.2,
   },
 ];
 

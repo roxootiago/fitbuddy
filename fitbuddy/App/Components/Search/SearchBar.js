@@ -15,7 +15,6 @@ export default function SearchBar({setSearchText}) {
         colors={[Colors.WHITE, "transparent"]}
         style={{ padding: 20, width: Dimensions.get("screen").width }}
       >
-        
         <View
           style={{
             display: "flex",
@@ -29,10 +28,11 @@ export default function SearchBar({setSearchText}) {
             borderRadius: 5,
           }}
         >
-          <Ionicons name="search" size={24} color={Colors.DARK_GRAY} />
+          <Ionicons name="search" size={24} color={Colors.GRAY} />
           <TextInput
             placeholder="Search"
-            style={{ backgroundColor: Colors.WHITE, width: "80%" }}
+            placeholderTextColor="white"
+            style={{ backgroundColor: Colors.WHITE, width: "80%", color: "white" }}
             onChangeText={(value) => setSearchInput(value)}
             onSubmitEditing={() => setSearchText(searchInput)}
           />

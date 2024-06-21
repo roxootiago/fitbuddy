@@ -7,7 +7,8 @@ import {
 import Home from "../Screens/Home";
 import PlaceDetail from "../Components/PlaceDetail/PlaceDetail";
 import Corrida from "../Screens/Corrida"; // Importe a nova página
-import Cronometro from "../Screens/Cronometro"; // Import
+import Cronometro from "../Screens/Cronometro";
+import CategoryDetail from "../Screens/CategoryDetail"
 
 export default function HomeNavigation() {
   const isAndroid = true;
@@ -33,14 +34,19 @@ export default function HomeNavigation() {
       <Stack.Screen
         name="run-screen"
         options={{ title: "Corrida" }}
-        component={Corrida} 
+        component={Corrida}
       />
- <Stack.Screen
+      <Stack.Screen
         name="cronometro-screen"
         options={{ title: "Cronometro" }}
         component={Cronometro}
       />
-      
+
+      <Stack.Screen
+        name="category-detail-screen"
+        options={{ title: "Resistencia" }}
+        component={CategoryDetail}
+      />
     </Stack.Navigator>
   );
 }

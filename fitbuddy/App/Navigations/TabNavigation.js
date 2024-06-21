@@ -8,6 +8,7 @@ import Profile from "../Screens/Profile";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import HomeNavigation from "./HomeNavigation";
+import ProfileNavigation from "./ProfileNavigation";
 import Colors from "../Shared/Colors";
 
 export default function TabNavigation() {
@@ -111,9 +112,10 @@ export default function TabNavigation() {
         />
         <Tab.Screen
           name="Profile"
-          component={Profile}
+          component={ProfileNavigation}
           options={{
             tabBarLabel: "Profile",
+            headerTitle: null, // Remover o título do cabeçalho para a tela Profile
           }}
         />
       </Tab.Navigator>
